@@ -1,0 +1,19 @@
+---
+robots:
+- id: 1
+  name: 'Henry '
+  city: Houston
+  state: 'CO '
+  avatar: 'Himself '
+  birthdate: '06-27-1990 '
+  date hired: ''
+  department: 'HR '
+- id: 3
+  name: 'Henry '
+  city: 'Denver '
+  state: 'CO '
+  avatar: 'Bobby '
+  birthdate: '06-27-1990 '
+  date hired: 05-11-2016
+  department: HR
+total: 11

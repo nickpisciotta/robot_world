@@ -1,6 +1,4 @@
 
-require 'yaml/store'
-
 class RobotWorld
   attr_reader :database
 
@@ -9,20 +7,32 @@ class RobotWorld
   end
 
   def create(robot)
-    database.transaction do
-      database['robots'] ||= []
-      database['total'] ||= 0
-      database['total'] += 1
-      database['robots'] << { "id" => database['total'],
-                              "name" => robot[:name],
-                              "city" => robot[:city],
-                              "state" => robot[:state],
-                              "avatar" => "https://robohash.org/#{robot[:name]}.png",
-                              "birthdate" => Time.parse(robot[:birthdate]),
-                              "date_hired" => Time.parse(robot[:date_hired]),
-                              "department" => robot[:department]}
-      #require 'pry';binding.pry
-    end
+    table.insert(name: robot[:name],
+                 city: robot[:city],
+                 state: robot[:state],
+                 avatar: "https://robohash.org/#{robot[:name]}.png",
+                 birthdate: Time.parse(robot[:birthdate]),
+                 date_hired: Time.parse(robot[:date_hired]),
+                 department: robot[:department])
+  end
+    # database.transaction do
+    #   database['robots'] ||= []
+    #   database['total'] ||= 0
+    #   database['total'] += 1
+    #   database['robots'] << { "id" => database['total'],
+    #                           "name" => robot[:name],
+    #                           "city" => robot[:city],
+    #                           "state" => robot[:state],
+    #                           "avatar" => "https://robohash.org/#{robot[:name]}.png",
+    #                           "birthdate" => Time.parse(robot[:birthdate]),
+    #                           "date_hired" => Time.parse(robot[:date_hired]),
+    #                           "department" => robot[:department]}
+    #   #require 'pry';binding.pry
+    # end
+
+
+  def table
+    database.from(:robots).order(:id)
   end
 
   def average_age
@@ -36,19 +46,19 @@ class RobotWorld
     end
   end
 
-  def raw_robots
-    database.transaction do
-      database["robots"] || []
-    end
-  end
 
   def all
-    raw_robots.map {|robot| Robot.new(robot)}
+    table.to_a.map {|robot| Robot.new(robot)}
     #require 'pry';binding.pry
   end
 
+  def locate_robot(id)
+    table.where(:id => id)
+  end
+
+
   def raw_robot(id)
-    raw_robots.find {|robot| robot["id"] == id}
+    locate_robot(id).to_a.first
   end
 
   def find(id)
@@ -56,30 +66,33 @@ class RobotWorld
   end
 
   def update(id, robot)
-    database.transaction do
-      target_robot = database['robots'].find {|data| data["id"] == id}
-      target_robot['name'] = robot[:name]
-      target_robot['city'] = robot[:city]
-      target_robot['state'] = robot[:state]
-      target_robot['avatar'] = "https://robohash.org/#{robot[:name]}.png"
-      target_robot['birthdate'] = Time.parse(robot[:birthdate])
-      target_robot['date_hired'] = Time.parse(robot[:date_hired])
-      target_robot['department'] = robot[:department]
-    end
+     locate_robot(id).update(robot)
+    # database.transaction do
+    #   target_robot = database['robots'].find {|data| data["id"] == id}
+    #   target_robot['name'] = robot[:name]
+    #   target_robot['city'] = robot[:city]
+    #   target_robot['state'] = robot[:state]
+    #   target_robot['avatar'] = "https://robohash.org/#{robot[:name]}.png"
+    #   target_robot['birthdate'] = Time.parse(robot[:birthdate])
+    #   target_robot['date_hired'] = Time.parse(robot[:date_hired])
+    #   target_robot['department'] = robot[:department]
+    # end
   end
 
   def destroy(id)
-    database.transaction do
-      database['robots'].delete_if {|robot| robot['id'] == id}
-    end
+    locate_robot(id).delete
+    # database.transaction do
+    #   database['robots'].delete_if {|robot| robot['id'] == id}
+    # end
   end
 
   def delete_all
-  database.transaction do
-    database['robots'] = []
-    database['total'] = 0
+    table.delete
+  # database.transaction do
+  #   database['robots'] = []
+  #   database['total'] = 0
+  # end
   end
-end
 
 
 end

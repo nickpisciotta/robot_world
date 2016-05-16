@@ -1,35 +1,46 @@
 <form action="/robots/<%= @robot.id %>" method="post">
   <p>Edit Your Robot:</p>
 
-  <div>
+  <div class="input-group">
     <input type="hidden" name="_method" value="PUT">
-    <label for="name">Name</label>
-    <input type='text' name='robot[name]' id="name" value="<%= @robot.name%>"><br/>
+    <span class="input-group-addon" id="basic-addon1">Name</span>
+    <!-- <label for="name">Name</label> -->
+    <input type='text' name='robot[name]' aria-describedby='basic-addon1' value="<%= @robot.name%>"><br/>
   </div>
 
-  <div>
+  <!-- <div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Name</span>
+    <input type='text' class="form-control" name='robot[name]'aria-describedby="basic-addon1"><br/>
+  </div>
+   -->
+  <div class="input-group">
     <label for="city">City</label>
-    <input type='text' name='robot[city]' id="city" value="<%= @robot.city%>"><br/>
+    <span class="input-group-addon" id="basic-addon1">City</span>
+    <input type='text' name='robot[city]' aria-describedby='basic-addon1' value="<%= @robot.city%>"><br/>
   </div>
 
   <div>
     <label for="state">State</label>
-    <input type='text' name='robot[state]' id="state" value="<%= @robot.state%>"><br/>
+    <span class="input-group-addon" id="basic-addon1">State</span>
+    <input type='text' name='robot[state]' aria-describedby='basic-addon1' value="<%= @robot.state%>"><br/>
   </div>
 
   <div>
     <label for="birthdate">Birthdate</label>
-    <input type='text' name='robot[birthdate]' id="birthdate" value="<%= @robot.birthdate%>"><br/>
+    <span class="input-group-addon" id="basic-addon1">Birthdate</span>
+    <input type='text' name='robot[birthdate]' aria-describedby='basic-addon1' value="<%= @robot.birthdate%>"><br/>
   </div>
 
   <div>
     <label for="date_hired">Date Hired</label>
-    <input type='text' name='robot[date_hired]' id="date_hired" value="<%= @robot.date_hired%>"><br/>
+    <span class="input-group-addon" id="basic-addon1">Date Hired</span>
+    <input type='text' name='robot[date_hired]' aria-describedby='basic-addon1' value="<%= @robot.date_hired%>"><br/>
   </div>
 
   <div>
     <label for="department">Department</label>
-    <input type='text' name='robot[department]' id="department" value="<%= @robot.department%>"><br/>
+    <span class="input-group-addon" id="basic-addon1">Department</span>
+    <input type='text' name='robot[department]' aria-describedby='basic-addon1' value="<%= @robot.department%>"><br/>
   </div>
 
   <input type='submit'/>

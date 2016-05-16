@@ -1,6 +1,6 @@
 
 class RobotWorldApp < Sinatra::Base
-   #set :root, File.expand_path("..", __dir__)
+   set :root, File.expand_path("..", __dir__)
   # set :method_override, true
 
   get '/' do
@@ -30,7 +30,6 @@ class RobotWorldApp < Sinatra::Base
 
   get '/robots/:id/edit' do |id|
     @robot = robot_world.find(id.to_i)
-    #require 'pry';binding.pry
     erb :edit
   end
 
@@ -40,17 +39,18 @@ class RobotWorldApp < Sinatra::Base
   end
 
   delete '/robots/:id' do |id|
+    require 'pry';binding.pry
     robot_world.destroy(id.to_i)
     redirect '/robots'
   end
 
   def robot_world
-    if ENV['RACK-ENV'] == "test"
-      database = YAML::Store.new('db/robot_world_test')
+    if ENV['RACK_ENV'] == "test"
+      database = Sequel.postgres('robot_world_test')
     else
-      database = YAML::Store.new('db/robot_world')
+      database = Sequel.postgres('robot_world')
     end
     @robot_world ||= RobotWorld.new(database)
   end
-  
+
 end

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  <title>Robot World</title>
+</head>
+<body>
+  <div>
+    <ul class="nav nav-pills">
+    <li role="presentation" class="active"><a href="/">Dashboard</a></li>
+    <li role="presentation"><a href="/robots">Robot Index</a></li>
+    <li role="presentation"><a href="/robots/new">Add New Robot</a></li>
+    </ul>
+  </div> 
+  <div class="container">
+    <h1 class="robot">All Robots</h1>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <img src="https://robohash.org/John.png">
+        <div class="caption">
+          <h3 class="info">18: <a href='/robots/18'>John</a></h3>
+          <p><a href="/robots/18/edit" class = "btn btn-primary" role="button">Edit</a>
+            <form action="/robots/18" method="post">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="submit" value="delete" class= "btn">
+            </form>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="/js/boostrap.min.js"></script>
+</body>
+</html>

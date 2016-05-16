@@ -1,10 +1,10 @@
-require 'models/robot_world'
 
 class RobotWorldApp < Sinatra::Base
-  set :root, File.expand_path("..", __dir__)
-  set :method_override, true
+   #set :root, File.expand_path("..", __dir__)
+  # set :method_override, true
 
   get '/' do
+    # @age = @robot_world.average_age#(then do statistic logic within robot_world and call it within dashboard)
     erb :dashboard
   end
 
@@ -30,6 +30,7 @@ class RobotWorldApp < Sinatra::Base
 
   get '/robots/:id/edit' do |id|
     @robot = robot_world.find(id.to_i)
+    #require 'pry';binding.pry
     erb :edit
   end
 
@@ -44,9 +45,12 @@ class RobotWorldApp < Sinatra::Base
   end
 
   def robot_world
+    if ENV['RACK-ENV'] == "test"
+      database = YAML::Store.new('db/robot_world_test')
+    else
       database = YAML::Store.new('db/robot_world')
-      @robot_world ||= RobotWorld.new(database)
+    end
+    @robot_world ||= RobotWorld.new(database)
   end
-
-
+  
 end

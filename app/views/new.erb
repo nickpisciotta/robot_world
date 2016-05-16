@@ -1,41 +1,38 @@
 <form action="/robots" method="post">
   <p>Input A New Robot:</p>
 
-  <div>
-    <label for="name">Name</label>
-    <input type='text' name='robot[name]' id="name"><br/>
+
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Name</span>
+    <input type='text' class="form-control" name='robot[name]'aria-describedby="basic-addon1"><br/>
   </div>
 
-  <div>
-    <label for="city">City</label>
-    <input type='text' name='robot[city]' id="city"><br/>
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">City</span>
+    <input type='text' class="form-control" name='robot[city]'aria-describedby="basic-addon1"><br/>
   </div>
 
-  <div>
-    <label for="state">State</label>
-    <input type='text' name='robot[state]' id="state"><br/>
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">State</span>
+    <input type='text' class="form-control" name='robot[state]'aria-describedby="basic-addon1"><br/>
   </div>
 
-  <div>
-    <label for="avatar">Avatar</label>
-    <input type='text' name='robot[avatar]' id="avatar"><br/>
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Birthdate</span>
+    <input type='date' maxlength="5px" class="form-control" name='robot[birthdate]'aria-describedby="basic-addon1"><br/>
   </div>
 
-  <div>
-    <label for="birthdate">Birthdate</label>
-    <input type='date' name='robot[birthdate]' id="birthdate"><br/>
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Date Hired</span>
+    <input type='date' class="form-control" name='robot[date_hired]'aria-describedby="basic-addon1"><br/>
   </div>
 
-  <div>
-    <label for="date_hired">Date Hired</label>
-    <input type='date' name='robot[date_hired]' id="date_hired"><br/>
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Department</span>
+    <input type='text' class="form-control" name='robot[department]'aria-describedby="basic-addon1"><br/>
   </div>
 
-  <div>
-    <label for="department">Department</label>
-    <input type='text' name='robot[department]' id="department"><br/>
-  </div>
 
-  <input type='submit'/>
+  <input class="submitting" type='submit'/>
 
 </form>

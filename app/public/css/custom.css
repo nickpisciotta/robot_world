@@ -1,0 +1,15 @@
+input.submitting {
+  margin-top: 10px;
+}
+
+h1.robot, h3.info, form, p {
+  text-align: center;
+}
+
+p.purpose {
+  color: white;
+}
+
+.jumbotron {
+  background: #686868
+ }

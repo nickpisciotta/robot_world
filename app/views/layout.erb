@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  <title>Robot World</title>
+</head>
+<body>
+  <div>
+    <ul class="nav nav-pills">
+    <li role="presentation" class="active"><a href="/">Dashboard</a></li>
+    <li role="presentation"><a href="/robots">Robot Index</a></li>
+    <li role="presentation"><a href="/robots/new">Add New Robot</a></li>
+    </ul>
+  </div> 
+  <div class="container">
+    <%= yield %>
+  </div>
+  <script src="/js/boostrap.min.js"></script>
+</body>
+</html>
